@@ -95,16 +95,16 @@ if __name__ == '__main__':
 ```
 也可以直接运行命令行
 ```
-python combatweight.py --cfg yolov8s.yaml --weight weights/yolov8s.pt --data ultralytics/cfg/datasets/VOC.yaml --batch 64 --epochs 100 --task detect --device 0 --freeze 10 --optimizer AdamW
+python scripts/train.py --cfg yolov8s.yaml --weight weights/yolov8s.pt --data ultralytics/cfg/datasets/VOC.yaml --batch 64 --epochs 100 --task detect --device 0 --freeze 10 --optimizer AdamW
 ```
 #### 合并俩个头
 ```
-python combatweight.py --weight1 'weights/yolov8s.pt' --weight2 "runs/detect/train18/weights/best.pt" --rescfg "yolov8slei.yaml" --save-dir 'weights'
+python scripts/combatweight.py --weight1 'weights/yolov8s.pt' --weight2 "runs/detect/train18/weights/best.pt" --rescfg "yolov8slei.yaml" --save-dir 'weights'
 ```
 
 #### 预测俩个头的输出结果
 ```
-python detect_mhead.py --weight "weights/yolomhead.pt" --data_dir "23_2024_01_23_14_31_40_1158_rosbag" --sava_dir "/home/lei/pj2/yolodata/result2" --deivce "cuda:0"
+python scripts/detect_mhead.py --weight "weights/yolomhead.pt" --data_dir "23_2024_01_23_14_31_40_1158_rosbag" --sava_dir "/home/lei/pj2/yolodata/result2" --deivce "cuda:0"
 ```
 
 YOLOv8 may also be used directly in a Python environment, and accepts the same [arguments](https://docs.ultralytics.com/usage/cfg/) as in the CLI example above:
