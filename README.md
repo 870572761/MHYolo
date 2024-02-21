@@ -77,6 +77,35 @@ yolo predict model=yolov8n.pt source='https://ultralytics.com/images/bus.jpg'
 `yolo` can be used for a variety of tasks and modes and accepts additional arguments, i.e. `imgsz=640`. See the YOLOv8 [CLI Docs](https://docs.ultralytics.com/usage/cli) for examples.
 
 ### Python
+#### freeze backbone 训练新头
+```python
+from ultralytics import YOLO
+import comet_ml
+import os
+env = os.environ.copy()
+# env["COMET_API_KEY"] = "MwCvlkPyBV0XqwuSoMFEM8GE8" comet监控数据集
+# os.environ.update(env)
+comet_ml.init()
+model = YOLO('yolov8s.yaml').load('weights/yolov8s.pt')
+if __name__ == '__main__':
+    # 训练模型 这里以VOC数据集为例子
+    results = model.train(data='ultralytics/cfg/datasets/VOC.yaml', epochs=100, batch=64, task="detect", optimizer="AdamW", device=0, freeze=10)
+    #模型验证
+    model.val()
+```
+也可以直接运行命令行
+```
+python combatweight.py --cfg yolov8s.yaml --weight weights/yolov8s.pt --data ultralytics/cfg/datasets/VOC.yaml --batch 64 --epochs 100 --task detect --device 0 --freeze 10 --optimizer AdamW
+```
+#### 合并俩个头
+```
+python combatweight.py --weight1 'weights/yolov8s.pt' --weight2 "runs/detect/train18/weights/best.pt" --rescfg "yolov8slei.yaml" --save-dir 'weights'
+```
+
+#### 预测俩个头的输出结果
+```
+python detect_mhead.py --weight "weights/yolomhead.pt" --data_dir "23_2024_01_23_14_31_40_1158_rosbag" --sava_dir "/home/lei/pj2/yolodata/result2" --deivce "cuda:0"
+```
 
 YOLOv8 may also be used directly in a Python environment, and accepts the same [arguments](https://docs.ultralytics.com/usage/cfg/) as in the CLI example above:
 
