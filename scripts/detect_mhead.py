@@ -40,9 +40,9 @@ parser.add_argument('--save-dir', type=str, help='保存地址')
 parser.add_argument('--device', type=str, help='设备')
 
 # 设置默认值
-parser.set_defaults(weight="weights/yolomhead.pt",
+parser.set_defaults(weight="../../weight/yoloweight/yolov8s.pt",
                     data_dir="23_2024_01_23_14_31_40_1158_rosbag",
-                    sava_dir="/home/lei/pj2/yolodata/result2",
+                    save_dir="/home/lei/pj2/yolodata/result2",
                     device="cuda:0")
 
 # 解析命令行参数
@@ -51,10 +51,10 @@ args = parser.parse_args()
 # Load a model
 model = YOLO(args.weight)
 path = args.data_dir
-images = [os.path.join(path,file) for file in os.listdir(path) if file.endswith('.jpg')]
+# images = [os.path.join(path,file) for file in os.listdir(path) if file.endswith('.jpg')]
+images = [path]
 annotated_frame = None
-save_path = args.sava_dir
-i = 0
+save_path = args.save_dir
 for image_p in images:
     # 裁剪图像
     image = cutimage(image_p)
