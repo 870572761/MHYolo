@@ -25,21 +25,21 @@ from .block import (
     DFL,
     SPP,
     SPPF,
+    BNContrastiveHead,
     Bottleneck,
     BottleneckCSP,
     C2f,
     C2fAttn,
-    ImagePoolingAttn,
     C3Ghost,
     C3x,
+    ContrastiveHead,
     GhostBottleneck,
     HGBlock,
     HGStem,
+    ImagePoolingAttn,
     Proto,
     RepC3,
     ResNetLayer,
-    ContrastiveHead,
-    BNContrastiveHead,
 )
 from .conv import (
     CBAM,
@@ -56,7 +56,7 @@ from .conv import (
     RepConv,
     SpatialAttention,
 )
-from .head import OBB, Classify, Detect, Pose, RTDETRDecoder, Segment, WorldDetect , Resultcat
+from .head import OBB, Classify, Detect, Pose, Resultcat, RTDETRDecoder, Segment, WorldDetect
 from .transformer import (
     AIFI,
     MLP,

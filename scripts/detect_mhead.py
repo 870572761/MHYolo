@@ -1,8 +1,10 @@
-from ultralytics import YOLO
-import cv2
 import os
-from PIL import Image, ImageDraw
+
+import cv2
 import numpy as np
+from PIL import Image, ImageDraw
+
+from ultralytics import YOLO
 
 
 def cutimage(path):
@@ -65,7 +67,7 @@ for image_p in images:
     result = model(image_p, iou=0.5, device=args.device)
     for res in result:
         annotated_frame = res.plot()
-        cv2.imshow('Image', annotated_frame)
+        cv2.imshow("Image", annotated_frame)
         cv2.waitKey(0)
     # import os
     # print(os.path.join(save_path, os.path.basename(image_p)))

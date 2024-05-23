@@ -1,7 +1,9 @@
-from ultralytics import YOLO
-import comet_ml
-import os
 import argparse
+import os
+
+import comet_ml
+
+from ultralytics import YOLO
 
 env = os.environ.copy()
 # env["COMET_API_KEY"] = "MwCvlkPyBV0XqwuSoMFEM8GE8"

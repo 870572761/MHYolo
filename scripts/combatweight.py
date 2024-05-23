@@ -1,8 +1,10 @@
-from ultralytics import YOLO
-import itertools
-import torch
 import copy
+import itertools
 import os
+
+import torch
+
+from ultralytics import YOLO
 
 
 def find_different_parameters(obj1, obj2):
