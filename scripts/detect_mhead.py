@@ -61,10 +61,13 @@ annotated_frame = None
 save_path = args.save_dir
 for image_p in images:
     # 裁剪图像
-    image = cutimage(image_p)
-    result = model(image, iou=0.5, device=args.device)
-    annotated_frame = result[0].plot()
-    import os
-
-    print(os.path.join(save_path, os.path.basename(image_p)))
-    cv2.imwrite(os.path.join(save_path, os.path.basename(image_p)), annotated_frame)
+    # image = cutimage(image_p)
+    result = model(image_p, iou=0.5, device=args.device)
+    for res in result:
+        annotated_frame = res.plot()
+        cv2.imshow('Image', annotated_frame)
+        cv2.waitKey(0)
+    # import os
+    # print(os.path.join(save_path, os.path.basename(image_p)))
+    # cv2.imwrite(os.path.join(save_path, os.path.basename(image_p)), annotated_frame)
+cv2.destroyAllWindows()

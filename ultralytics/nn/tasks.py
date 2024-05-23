@@ -29,6 +29,7 @@ from ultralytics.nn.modules import (
     Conv2,
     ConvTranspose,
     Detect,
+    Resultcat,
     DWConv,
     DWConvTranspose2d,
     Focus,
@@ -884,6 +885,8 @@ def parse_model(d, ch, verbose=True):  # model_dict, input_channels(3)
             c2 = args[1] if args[3] else args[1] * 4
         elif m is nn.BatchNorm2d:
             args = [ch[f]]
+        elif m is Resultcat:#change
+            c2 = sum(ch[x] for x in f)
         elif m is Concat:
             c2 = sum(ch[x] for x in f)
         elif m in (Detect, WorldDetect, Segment, Pose, OBB, ImagePoolingAttn):
@@ -973,6 +976,8 @@ def guess_model_task(model):
             return "pose"
         if m == "obb":
             return "obb"
+        if m == "resultcat":
+            return cfg["head"][-2][-2].lower()
 
     # Guess from model cfg
     if isinstance(model, dict):

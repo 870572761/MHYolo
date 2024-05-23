@@ -56,7 +56,7 @@ from .conv import (
     RepConv,
     SpatialAttention,
 )
-from .head import OBB, Classify, Detect, Pose, RTDETRDecoder, Segment, WorldDetect
+from .head import OBB, Classify, Detect, Pose, RTDETRDecoder, Segment, WorldDetect , Resultcat
 from .transformer import (
     AIFI,
     MLP,
@@ -123,4 +123,5 @@ __all__ = (
     "ImagePoolingAttn",
     "ContrastiveHead",
     "BNContrastiveHead",
+    "Resultcat",
 )
